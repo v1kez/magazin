@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 Pants =[
@@ -24,18 +25,32 @@ class Pants(models.Model):
     model = models.CharField(max_length=30)
     price = models.IntegerField(blank=True)
     photo = models.ImageField(upload_to="photos/%y/")
+    class Meta:
+        verbose_name="Штаны"
+        verbose_name_plural="Штаны"
+
 
 class Tshirt(models.Model):
     name = models.CharField(max_length=30)
     model = models.CharField(max_length=30)
     price = models.IntegerField(blank=True)
     photo = models.ImageField(upload_to="photos/%y/")
+    class Meta:
+        verbose_name="Футболка"
+        verbose_name_plural="Футболка"
 
 class Blouse(models.Model):
     name = models.CharField(max_length=30)
     model = models.CharField(max_length=30)
     price = models.IntegerField(blank=True)
     photo = models.ImageField(upload_to="photos")
+    class Meta:
+        verbose_name="Кофта"
+        verbose_name_plural="Кофта"
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('post', kwargs={'post_id': self.pk})
+

@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import *
+
+admin.site.register(Pants)
+admin.site.register(Tshirt)
+admin.site.register(Blouse)

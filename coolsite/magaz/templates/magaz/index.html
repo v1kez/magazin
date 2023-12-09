@@ -3,4 +3,50 @@
 {% block content %}
 <h1>{{title}}</h1>
 
+<ul>
+    {% for p in posts %}
+    <li>
+{% if p.photo %}
+ <p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
+{% endif %}
+        <h2>{{p.name}}</h2>
+        <p>{{p.model}}</p>
+        <p>{{p.price}}</p>
+        <p class="link-read-post"><a href="{%url 'post' p.pk%}">Купить</a></p>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for p in posts1 %}
+    <li>
+{% if p.photo %}
+ <p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
+{% endif %}
+        <h2>{{p.name}}</h2>
+        <p>{{p.model}}</p>
+        <p>{{p.price}}</p>
+        <p class="link-read-post"><a href="{%url 'post' p.pk%}">Купить</a></p>
+
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for p in posts2 %}
+    <li>
+
+        {% autoescape off%}
+        {% if p.photo %}
+            <p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
+        {% endif %}
+        <h3>{{p.name}}</h3>
+        <p>{{p.model}}</p>
+        <p>{{p.price}}</p>
+        <p class="link-read-post"><a href="{{p.get_absolute_url}}">Купить</a></p>
+        {% endautoescape %}
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
